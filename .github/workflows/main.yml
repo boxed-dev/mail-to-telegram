@@ -3,6 +3,7 @@ name: Run Python Script
 on:
   schedule:
     - cron: '*/5 * * * *'
+workflow_dispatch:
 
 jobs:
   build:
@@ -10,17 +11,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Copy credentials.json
-      run: cp root/credentials.json .
-
+      
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.x
+        python-version: 3.8
 
     - name: Install dependencies
       run: pip install -r requirements.txt
 
     - name: Run script
-      run: python your_script.py
+      run: python script.py
