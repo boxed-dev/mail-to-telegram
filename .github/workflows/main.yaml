@@ -1,4 +1,5 @@
-name: Run script every hour
+name: Run Python Script
+
 on:
   schedule:
     - cron: '0 * * * *'
@@ -7,13 +8,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
+    - name: Checkout
       uses: actions/checkout@v2
+
+    - name: Copy credentials.json
+      run: cp path/to/credentials.json .
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'
+        python-version: 3.x
+
     - name: Install dependencies
       run: pip install -r requirements.txt
+
     - name: Run script
-      run: python script.py
+      run: python your_script.py
+      env:
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
