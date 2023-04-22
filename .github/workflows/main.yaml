@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Copy credentials.json
-      run: cp path/to/credentials.json .
+      run: cp root/credentials.json .
 
     - name: Set up Python
       uses: actions/setup-python@v2
